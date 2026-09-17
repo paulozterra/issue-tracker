@@ -124,19 +124,37 @@ dashboard básico, validaciones de autorización y seguridad, pruebas automatiza
 
 \- Stack, metodología y principio de arquitectura acordados.
 
-\- Repositorio GitHub: se llamará `issue-tracker`, público. TODAVÍA NO CREADO.
+\- Repositorio GitHub creado y público: `paulozterra/issue-tracker`, conectado como `origin`.
 
-\- Ningún código escrito todavía.
+\- Subagentes configurados en `.claude/agents/`: code-reviewer, architecture-reviewer,
+  security-reviewer, test-writer, git-commit-helper.
+
+\- Scaffolding inicial hecho: backend (Java 21 + Spring Boot 4.1.1, capas
+  controller/service/repository/model/dto/config, Spring Security con CORS habilitado para
+  `localhost:5173` y una `SecurityFilterChain` provisoria en `permitAll` documentada como
+  temporal), frontend (React + Vite), base `issue_tracker_dev` en PostgreSQL local con un
+  usuario de aplicación dedicado (`issue_tracker_app`, no el superusuario `postgres`). Ver
+  `README.md` para los pasos de setup.
+
+\- Decisión pendiente de ejecutar (no implementada todavía): migrar de
+  `spring.jpa.hibernate.ddl-auto=update` a Flyway con migraciones versionadas en el momento
+  en que se cree la primera entidad de negocio (Issue, User, etc.) — no dejarlo para después.
+
+\- `SecurityConfig` en `permitAll` es provisorio: su reemplazo debe ser parte explícita de
+  la tarea que implemente el modelo de usuarios/roles y autenticación real, no un paso
+  aparte que se pueda posponer indefinidamente.
+
+\- Todavía no hay entidades de negocio ni funcionalidad real implementada.
 
 
 
 \## Próximo paso inmediato
 
-Verificar que `gh auth status` esté autenticado. Si no, correr `gh auth login`. Luego crear
+Definir y proponer el plan para la primera entidad de negocio (probablemente `Issue` o
 
-el repo `issue-tracker` (público) en GitHub, inicializar el repo local, y recién ahí
+`User`, a confirmar con Paulo), incluyendo el modelo de datos, la migración Flyway
 
-proponer un plan de scaffolding inicial (estructura backend/frontend, conexión a base de
+correspondiente y el CRUD básico en capas — siguiendo la metodología de arriba, sin
 
-datos) — siguiendo la metodología de arriba, sin implementar nada sin aprobación de Paulo.
+implementar nada sin aprobación de Paulo.
 

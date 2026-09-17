@@ -1,0 +1,2 @@
+spring.datasource.username=issue_tracker_app
+spring.datasource.password=changeme
